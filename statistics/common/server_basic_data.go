@@ -1,4 +1,4 @@
-package main
+package common
 
 import (
 	"bufio"
@@ -8,11 +8,11 @@ import (
 	"os"
 	"strings"
 
-	pb "github.com/adarocket/proto"
+	pb "github.com/adarocket/proto/proto"
 )
 
 // GetServerBasicData -
-func GetServerBasicData() *pb.ServerBasicData {
+func (commonStatistic *CommonStatistic) GetServerBasicData() *pb.ServerBasicData {
 	var serverBasicData pb.ServerBasicData
 	var err error
 

@@ -1,4 +1,4 @@
-package main
+package common
 
 import (
 	"bufio"
@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"strings"
 
-	pb "github.com/adarocket/proto"
+	pb "github.com/adarocket/proto/proto"
 )
 
 // GetMemoryData -
-func GetMemoryData() (memory *pb.MemoryState, err error) {
+func (commonStatistic *CommonStatistic) GetMemoryData() (memory *pb.MemoryState, err error) {
 	file, err := os.Open("/proc/meminfo")
 	if err != nil {
 		return nil, err

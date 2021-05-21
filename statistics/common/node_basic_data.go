@@ -1,20 +1,20 @@
-package main
+package common
 
 import (
 	"log"
 	"os/exec"
 	"regexp"
 
-	pb "github.com/adarocket/proto"
+	pb "github.com/adarocket/proto/proto"
 )
 
 // GetNodeBasicData -
-func GetNodeBasicData() *pb.NodeBasicData {
+func (commonStatistic *CommonStatistic) GetNodeBasicData() *pb.NodeBasicData {
 	var nodeBasicData pb.NodeBasicData
 
-	nodeBasicData.Ticker = loadedConfig.Ticker
+	nodeBasicData.Ticker = commonStatistic.loadedConfig.Ticker
 	nodeBasicData.Type = "" // from node info
-	nodeBasicData.Location = loadedConfig.Location
+	nodeBasicData.Location = commonStatistic.loadedConfig.Location
 	nodeBasicData.NodeVersion = getNodeVersion()
 
 	return &nodeBasicData

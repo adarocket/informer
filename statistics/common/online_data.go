@@ -1,16 +1,16 @@
-package main
+package common
 
 import (
 	"time"
 
-	pb "github.com/adarocket/proto"
+	pb "github.com/adarocket/proto/proto"
 )
 
 // GetOnlineData -
-func GetOnlineData() *pb.Online {
+func (commonStatistic *CommonStatistic) GetOnlineData() *pb.Online {
 	var onlineData pb.Online
 
-	onlineData.SinceStart = int64(time.Now().Sub(startTime).Seconds())
+	onlineData.SinceStart = int64(time.Since(commonStatistic.startTime).Seconds())
 	onlineData.Pings = 0
 	// onlineData.ServerActive = true
 	onlineData.NodeActive = true

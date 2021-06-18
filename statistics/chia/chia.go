@@ -3,9 +3,14 @@ package chia
 import (
 	"adarocket/informer/config"
 	"adarocket/informer/statistics/common"
+	"context"
+	"log"
 	"time"
 
-	pb "github.com/adarocket/proto/proto"
+	pbChia "github.com/adarocket/proto/proto-gen/chia"
+	pbCommon "github.com/adarocket/proto/proto-gen/common"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/grpclog"
 )
 
 type Chia struct {
@@ -13,21 +18,56 @@ type Chia struct {
 	commonStatistic *common.CommonStatistic
 }
 
-func NewChia(config *config.Config, startTime time.Time) (chia *Chia) {
-	chia = new(Chia)
+func NewChia(config *config.Config, startTime time.Time, conn *grpc.ClientConn) {
+	chia := new(Chia)
 	chia.loadedConfig = config
 	chia.commonStatistic = common.NewCommonStatistic(config, startTime)
-	return chia
+
+	// ----------------------------------------------------------------------
+
+	client := pbChia.NewChiaClient(conn)
+
+	durationForFrequentlyUpdate := time.Second * time.Duration(chia.loadedConfig.TimeForFrequentlyUpdate)
+	durationForRareUpdate := time.Second * time.Duration(chia.loadedConfig.TimeForRareUpdate)
+
+	sendStatistic(client, true, chia)
+	for {
+		timer := time.NewTimer(durationForFrequentlyUpdate)
+		<-timer.C
+		durationForRareUpdate -= durationForFrequentlyUpdate
+		if durationForRareUpdate <= 0 {
+			sendStatistic(client, true, chia)
+		} else {
+			sendStatistic(client, false, chia)
+		}
+	}
+
 }
 
-func (chia *Chia) GetNodeStatistic(fullStatistics bool) (request *pb.SaveStatisticRequest, err error) {
-	request = new(pb.SaveStatisticRequest)
+func sendStatistic(client pbChia.ChiaClient, fullStatistics bool, node *Chia) {
+	request, err := node.GetNodeStatistic(fullStatistics)
+	if err != nil {
+		grpclog.Infoln(err)
+		return
+	}
 
-	request.NodeAuthData = new(pb.NodeAuthData)
+	response, err := client.SaveStatistic(context.Background(), request)
+	if err != nil {
+		grpclog.Infoln(err)
+		return
+	}
+
+	log.Println(response.Status)
+}
+
+func (chia *Chia) GetNodeStatistic(fullStatistics bool) (request *pbChia.SaveStatisticRequest, err error) {
+	request = new(pbChia.SaveStatisticRequest)
+
+	request.NodeAuthData = new(pbCommon.NodeAuthData)
 	request.NodeAuthData.Ticker = chia.loadedConfig.Ticker
 	request.NodeAuthData.Uuid = chia.loadedConfig.UUID
 
-	request.Statistic = new(pb.Statistic)
+	request.Statistic = new(pbChia.Statistic)
 
 	if fullStatistics {
 		// every 3600 seconds

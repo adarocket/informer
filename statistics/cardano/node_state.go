@@ -1,7 +1,7 @@
 package cardano
 
 import (
-	pb "github.com/adarocket/proto/proto"
+	pb "github.com/adarocket/proto/proto-gen/cardano"
 	"github.com/tidwall/gjson"
 )
 

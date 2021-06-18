@@ -7,7 +7,7 @@ import (
 
 	"github.com/tidwall/gjson"
 
-	pb "github.com/adarocket/proto/proto"
+	pb "github.com/adarocket/proto/proto-gen/cardano"
 )
 
 // GetNodePerformance -

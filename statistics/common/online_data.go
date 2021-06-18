@@ -3,7 +3,7 @@ package common
 import (
 	"time"
 
-	pb "github.com/adarocket/proto/proto"
+	pb "github.com/adarocket/proto/proto-gen/common"
 )
 
 // GetOnlineData -

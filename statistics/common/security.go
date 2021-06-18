@@ -1,6 +1,6 @@
 package common
 
-import pb "github.com/adarocket/proto/proto"
+import pb "github.com/adarocket/proto/proto-gen/common"
 
 // GetSecurity -
 func (commonStatistic *CommonStatistic) GetSecurity() *pb.Security {

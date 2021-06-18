@@ -1,6 +1,6 @@
 package cardano
 
-import pb "github.com/adarocket/proto/proto"
+import pb "github.com/adarocket/proto/proto-gen/cardano"
 
 // GetStakeInfo -
 func (cardano *Cardano) GetStakeInfo() *pb.StakeInfo {

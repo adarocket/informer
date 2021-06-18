@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	pb "github.com/adarocket/proto/proto"
+	pb "github.com/adarocket/proto/proto-gen/common"
 )
 
 // GetMemoryData -

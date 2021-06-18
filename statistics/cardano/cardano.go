@@ -3,6 +3,7 @@ package cardano
 import (
 	"adarocket/informer/config"
 	"adarocket/informer/statistics/common"
+	"context"
 	"errors"
 	"io/ioutil"
 	"log"
@@ -10,7 +11,11 @@ import (
 	"strconv"
 	"time"
 
-	pb "github.com/adarocket/proto/proto"
+	pb "github.com/adarocket/proto/proto-gen/cardano"
+	pbCommon "github.com/adarocket/proto/proto-gen/common"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/grpclog"
+
 	"github.com/tidwall/gjson"
 )
 
@@ -19,13 +24,46 @@ type Cardano struct {
 	commonStatistic *common.CommonStatistic
 }
 
-func NewCardano(config *config.Config, startTime time.Time) (cardano *Cardano) {
-	cardano = new(Cardano)
+func NewCardano(config *config.Config, startTime time.Time, conn *grpc.ClientConn) {
+	cardano := new(Cardano)
 	cardano.loadedConfig = config
-
 	cardano.commonStatistic = common.NewCommonStatistic(config, startTime)
 
-	return cardano
+	// ----------------------------------------------------------------------
+
+	client := pb.NewCardanoClient(conn)
+
+	durationForFrequentlyUpdate := time.Second * time.Duration(cardano.loadedConfig.TimeForFrequentlyUpdate)
+	durationForRareUpdate := time.Second * time.Duration(cardano.loadedConfig.TimeForRareUpdate)
+
+	sendStatistic(client, true, cardano)
+	for {
+		timer := time.NewTimer(durationForFrequentlyUpdate)
+		<-timer.C
+		durationForRareUpdate -= durationForFrequentlyUpdate
+		if durationForRareUpdate <= 0 {
+			sendStatistic(client, true, cardano)
+		} else {
+			sendStatistic(client, false, cardano)
+		}
+	}
+
+}
+
+func sendStatistic(client pb.CardanoClient, fullStatistics bool, node *Cardano) {
+	request, err := node.GetNodeStatistic(fullStatistics)
+	if err != nil {
+		grpclog.Infoln(err)
+		return
+	}
+
+	response, err := client.SaveStatistic(context.Background(), request)
+	if err != nil {
+		grpclog.Infoln(err)
+		return
+	}
+
+	log.Println(response.Status)
 }
 
 func (cardano *Cardano) GetNodeStatistic(fullStatistics bool) (*pb.SaveStatisticRequest, error) {
@@ -54,7 +92,7 @@ func (cardano *Cardano) GetNodeStatistic(fullStatistics bool) (*pb.SaveStatistic
 
 	request := new(pb.SaveStatisticRequest)
 
-	request.NodeAuthData = new(pb.NodeAuthData)
+	request.NodeAuthData = new(pbCommon.NodeAuthData)
 	request.NodeAuthData.Ticker = cardano.loadedConfig.Ticker
 	request.NodeAuthData.Uuid = cardano.loadedConfig.UUID
 

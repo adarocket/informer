@@ -8,11 +8,11 @@ import (
 
 	"github.com/sergey-shpilevskiy/go-bytesize"
 
-	pb "github.com/adarocket/proto/proto"
+	pbChia "github.com/adarocket/proto/proto-gen/chia"
 )
 
 // GetBlocks -
-func (chia *Chia) GetChiaNodeFarming() *pb.ChiaNodeFarming {
+func (chia *Chia) GetChiaNodeFarming() *pbChia.ChiaNodeFarming {
 	out, err := exec.Command("bash", "-c", `cd `+chia.loadedConfig.PathToChiaBlockchain+`; . ./activate; chia farm summary`).Output()
 	if err != nil {
 		log.Println(err.Error())
@@ -22,9 +22,9 @@ func (chia *Chia) GetChiaNodeFarming() *pb.ChiaNodeFarming {
 	return parse(string(out))
 }
 
-func parse(text string) *pb.ChiaNodeFarming {
+func parse(text string) *pbChia.ChiaNodeFarming {
 	var err error
-	var chiaNodeFarming pb.ChiaNodeFarming
+	var chiaNodeFarming pbChia.ChiaNodeFarming
 	textMap := make(map[string]string)
 
 	rows := strings.Split(text, "\n")

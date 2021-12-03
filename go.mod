@@ -6,6 +6,6 @@ require (
 	github.com/adarocket/proto v0.3.4
 	github.com/bykovme/goconfig v0.0.0-20170717154220-caa70d3abfca
 	github.com/sergey-shpilevskiy/go-bytesize v1.0.0
-	github.com/tidwall/gjson v1.6.8
+	github.com/tidwall/gjson v1.9.3
 	google.golang.org/grpc v1.37.1
 )

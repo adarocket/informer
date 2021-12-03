@@ -2,6 +2,8 @@ cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/adarocket/proto v0.3.4 h1:fSOqQ+J49+9A+JjqXafg3raniQWVFCkYpgbJxeYk3fk=
 github.com/adarocket/proto v0.3.4/go.mod h1:EJFz55bc/AsOUfAupyPJZxoNUEPw+gtbCSi503KsUls=
+github.com/adarocket/proto v0.4.1 h1:buxvtJhlI08p1IjfG8P8C1f1Up8AD8zCN8fh6U+8XAY=
+github.com/adarocket/proto v0.4.1/go.mod h1:ZsC6RWUchS3GSITfzE11BJTIIQ0r8YVyq46PpRn0aT8=
 github.com/bykovme/goconfig v0.0.0-20170717154220-caa70d3abfca h1:HvoZBF8ym+TVmTXAtrwld9dKJOYkWJnB4QMyOCCd7Qk=
 github.com/bykovme/goconfig v0.0.0-20170717154220-caa70d3abfca/go.mod h1:8FgfY3borBTXpAYc/KyCh7tq4CzJ8EbH6VLsRR1ugPs=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=

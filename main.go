@@ -1,9 +1,9 @@
 package main
 
 import (
-	"adarocket/informer/config"
-	"adarocket/informer/statistics/cardano"
-	"adarocket/informer/statistics/chia"
+	"github.com/adarocket/informer/config"
+	"github.com/adarocket/informer/statistics/cardano"
+	"github.com/adarocket/informer/statistics/chia"
 	"log"
 	"time"
 

@@ -1,11 +1,12 @@
 package chia
 
 import (
-	"adarocket/informer/config"
-	"adarocket/informer/statistics/common"
 	"context"
 	"log"
 	"time"
+
+	"github.com/adarocket/informer/config"
+	"github.com/adarocket/informer/statistics/common"
 
 	pbChia "github.com/adarocket/proto/proto-gen/chia"
 	pbCommon "github.com/adarocket/proto/proto-gen/common"

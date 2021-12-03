@@ -1,4 +1,4 @@
-module adarocket/informer
+module github.com/adarocket/informer
 
 go 1.16
 

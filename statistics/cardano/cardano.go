@@ -1,8 +1,6 @@
 package cardano
 
 import (
-	"adarocket/informer/config"
-	"adarocket/informer/statistics/common"
 	"context"
 	"errors"
 	"io/ioutil"
@@ -10,6 +8,9 @@ import (
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/adarocket/informer/config"
+	"github.com/adarocket/informer/statistics/common"
 
 	pb "github.com/adarocket/proto/proto-gen/cardano"
 	pbCommon "github.com/adarocket/proto/proto-gen/common"

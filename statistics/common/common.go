@@ -1,7 +1,7 @@
 package common
 
 import (
-	"adarocket/informer/config"
+	"github.com/adarocket/informer/config"
 	"time"
 )
 

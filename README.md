@@ -37,6 +37,7 @@ go get github.com/adarocket/informer
 
 ### Сonfiguration 
 The next step is to create a configuration file.
+The program may promt you to create a configuration file or you can create it manually.
 * ticker - name of the informer.
 * uuid - unique id of the informer.
 * location - 
@@ -53,8 +54,6 @@ cat << EOF > ~/etc/ada-rocket/informer.conf
     "time_for_frequently_update"    : 10,
     "time_for_rare_update"          : 60,
     "blockchain"                    : "cardano",
-    "mainnet_shelley_genesis_json_path" : "/home/ada/cardano-my-node/mainnet-shelley-genesis.json",
-    "mainnet_byron_genesis_json_path" : "/home/ada/cardano-my-node/mainnet-byron-genesis.json"
 }
 EOF
 ```

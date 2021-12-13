@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var (
+const (
 	urlGenesisBase = "https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/" +
 		"latest-finished/download/1/"
 	shelleyName = "mainnet-shelley-genesis.json"

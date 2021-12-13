@@ -53,7 +53,7 @@ cat << EOF > ~/etc/ada-rocket/informer.conf
     "controller_url"                : "165.22.92.139:5300",
     "time_for_frequently_update"    : 10,
     "time_for_rare_update"          : 60,
-    "blockchain"                    : "cardano",
+    "blockchain"                    : "cardano"
 }
 EOF
 ```

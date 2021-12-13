@@ -25,21 +25,24 @@ func (f *genesisJsonFiles) startUpdateTimeoutCycle(timeoutHours int) {
 	go func() {
 		for {
 			file, err := helpers.DownloadFile(shelleyName, urlGenesisBase)
-			f.shelleyGenesis = file
 			if err != nil {
 				log.Println(err)
+			} else {
+				f.shelleyGenesis = file
 			}
 
 			file, err = helpers.DownloadFile(byronName, urlGenesisBase)
-			f.byronGenesis = file
 			if err != nil {
 				log.Println(err)
+			} else {
+				f.byronGenesis = file
 			}
 
 			file, err = helpers.DownloadFile(alonzoName, urlGenesisBase)
-			f.alonzoGenesis = file
 			if err != nil {
 				log.Println(err)
+			} else {
+				f.alonzoGenesis = file
 			}
 
 			time.Sleep(time.Hour * time.Duration(timeoutHours))

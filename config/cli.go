@@ -39,5 +39,6 @@ func startCli(usrHomePath string) (createdConfig *Config, err error) {
 		return createdConfig, err
 	}
 
+	fmt.Println("config path:", usrHomePath+cConfigPath)
 	return createdConfig, nil
 }

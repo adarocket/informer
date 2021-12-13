@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/bykovme/goconfig"
+	"log"
 )
 
 const cConfigPath = "/etc/ada-rocket/informer.conf"

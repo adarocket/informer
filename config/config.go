@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/bykovme/goconfig"
+	"log"
 )
 
 const cConfigPath = "/etc/ada-rocket/informer.conf"
@@ -29,5 +30,10 @@ func LoadConfig() (loadedConfig *Config, err error) {
 
 	loadedConfig = new(Config)
 	err = goconfig.LoadConfig(usrHomePath+cConfigPath, loadedConfig)
+	if err != nil {
+		log.Println(err)
+		loadedConfig, err = startCli(usrHomePath)
+	}
+
 	return loadedConfig, err
 }

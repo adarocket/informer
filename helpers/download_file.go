@@ -1,4 +1,4 @@
-package config
+package helpers
 
 import (
 	"io"
@@ -6,15 +6,8 @@ import (
 	"net/http"
 )
 
-var (
-	urlDownloadBase = "https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/" +
-		"latest-finished/download/1/"
-	shelleyName = "mainnet-shelley-genesis.json"
-	byronName   = "mainnet-byron-genesis.json"
-)
-
-func getGenesisJson(jsonName string) ([]byte, error) {
-	res, err := http.Get(urlDownloadBase + jsonName)
+func DownloadFile(fileName, urlBase string) ([]byte, error) {
+	res, err := http.Get(urlBase + fileName)
 	if err != nil {
 		log.Println(err)
 		return []byte{}, err

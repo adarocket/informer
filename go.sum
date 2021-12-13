@@ -1,7 +1,5 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/adarocket/proto v0.3.4 h1:fSOqQ+J49+9A+JjqXafg3raniQWVFCkYpgbJxeYk3fk=
-github.com/adarocket/proto v0.3.4/go.mod h1:EJFz55bc/AsOUfAupyPJZxoNUEPw+gtbCSi503KsUls=
 github.com/adarocket/proto v0.4.1 h1:buxvtJhlI08p1IjfG8P8C1f1Up8AD8zCN8fh6U+8XAY=
 github.com/adarocket/proto v0.4.1/go.mod h1:ZsC6RWUchS3GSITfzE11BJTIIQ0r8YVyq46PpRn0aT8=
 github.com/bykovme/goconfig v0.0.0-20170717154220-caa70d3abfca h1:HvoZBF8ym+TVmTXAtrwld9dKJOYkWJnB4QMyOCCd7Qk=
@@ -84,7 +82,6 @@ google.golang.org/grpc v1.25.1/go.mod h1:c3i+UQWmh7LiEpx4sFZnkU36qjEYZ0imhYfXVyQ
 google.golang.org/grpc v1.27.0/go.mod h1:qbnxyOmOxrQa7FizSgH+ReBfzJrCY1pSN7KXBS8abTk=
 google.golang.org/grpc v1.37.1 h1:ARnQJNWxGyYJpdf/JXscNlQr/uv607ZPU9Z7ogHi+iI=
 google.golang.org/grpc v1.37.1/go.mod h1:NREThFqKR1f3iQ6oBuvc5LadQuXVGo9rkm5ZGrQdJfM=
-google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0/go.mod h1:6Kw0yEErY5E/yWrBtf03jp27GLLJujG4z/JK95pnjjw=
 google.golang.org/protobuf v0.0.0-20200109180630-ec00e32a8dfd/go.mod h1:DFci5gLYBciE7Vtevhsrf46CRTquxDuWsQurQQe4oz8=
 google.golang.org/protobuf v0.0.0-20200221191635-4d8936d0db64/go.mod h1:kwYJMbMJ01Woi6D6+Kah6886xMZcty6N08ah7+eCXa0=
 google.golang.org/protobuf v0.0.0-20200228230310-ab0ca4ff8a60/go.mod h1:cfTl7dwQJ+fmap5saPgwCLgHXTUD7jkjRqWcaiX5VyM=

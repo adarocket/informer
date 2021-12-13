@@ -23,13 +23,15 @@ import (
 type Cardano struct {
 	loadedConfig    *config.Config
 	commonStatistic *common.CommonStatistic
+	genesisJson     *genesisJsonFiles
 }
 
 func NewCardano(config *config.Config, startTime time.Time, conn *grpc.ClientConn) {
 	cardano := new(Cardano)
 	cardano.loadedConfig = config
 	cardano.commonStatistic = common.NewCommonStatistic(config, startTime)
-
+	cardano.genesisJson = new(genesisJsonFiles)
+	cardano.genesisJson.startUpdateTimeoutCycle(12)
 	// ----------------------------------------------------------------------
 
 	client := pb.NewCardanoClient(conn)
@@ -134,12 +136,12 @@ func (cardano *Cardano) GetNodeStatistic(fullStatistics bool) (*pb.SaveStatistic
 func (cardano *Cardano) getSlotTipRef(jsonBody string) (slotTipRef int64, expirationTime string) {
 	currentTimeSec := time.Now().Unix()
 
-	shelleyGenesisData := cardano.loadedConfig.MainnetShelleyGenesisJsonPath
+	shelleyGenesisData := cardano.genesisJson.shelleyGenesis
 	shelleyGenesisJSON := string(shelleyGenesisData)
 
 	slotLength := gjson.Get(shelleyGenesisJSON, "slotLength").Int()
 
-	byronGenesisData := cardano.loadedConfig.MainnetByronGenesisJsonPath
+	byronGenesisData := cardano.genesisJson.byronGenesis
 	byronGenesisJSON := string(byronGenesisData)
 
 	byronGenesisStartSec := gjson.Get(byronGenesisJSON, "startTime").Int()

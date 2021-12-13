@@ -134,18 +134,12 @@ func (cardano *Cardano) GetNodeStatistic(fullStatistics bool) (*pb.SaveStatistic
 func (cardano *Cardano) getSlotTipRef(jsonBody string) (slotTipRef int64, expirationTime string) {
 	currentTimeSec := time.Now().Unix()
 
-	shelleyGenesisData, err := ioutil.ReadFile(cardano.loadedConfig.MainnetShelleyGenesisJsonPath)
-	if err != nil {
-		log.Println(err)
-	}
+	shelleyGenesisData := cardano.loadedConfig.MainnetShelleyGenesisJsonPath
 	shelleyGenesisJSON := string(shelleyGenesisData)
 
 	slotLength := gjson.Get(shelleyGenesisJSON, "slotLength").Int()
 
-	byronGenesisData, err := ioutil.ReadFile(cardano.loadedConfig.MainnetByronGenesisJsonPath)
-	if err != nil {
-		log.Println(err)
-	}
+	byronGenesisData := cardano.loadedConfig.MainnetByronGenesisJsonPath
 	byronGenesisJSON := string(byronGenesisData)
 
 	byronGenesisStartSec := gjson.Get(byronGenesisJSON, "startTime").Int()

@@ -22,30 +22,34 @@ type genesisJsonFiles struct {
 
 // startUpdateTimeoutCycle - open new goroutine and update struct fields
 func (f *genesisJsonFiles) startUpdateTimeoutCycle(timeoutHours int) {
+	fDownload := func() {
+		file, err := helpers.DownloadFile(shelleyName, urlGenesisBase)
+		if err != nil {
+			log.Println(err)
+		} else {
+			f.shelleyGenesis = file
+		}
+
+		file, err = helpers.DownloadFile(byronName, urlGenesisBase)
+		if err != nil {
+			log.Println(err)
+		} else {
+			f.byronGenesis = file
+		}
+
+		file, err = helpers.DownloadFile(alonzoName, urlGenesisBase)
+		if err != nil {
+			log.Println(err)
+		} else {
+			f.alonzoGenesis = file
+		}
+	}
+
+	fDownload()
 	go func() {
-		for {
-			file, err := helpers.DownloadFile(shelleyName, urlGenesisBase)
-			if err != nil {
-				log.Println(err)
-			} else {
-				f.shelleyGenesis = file
-			}
-
-			file, err = helpers.DownloadFile(byronName, urlGenesisBase)
-			if err != nil {
-				log.Println(err)
-			} else {
-				f.byronGenesis = file
-			}
-
-			file, err = helpers.DownloadFile(alonzoName, urlGenesisBase)
-			if err != nil {
-				log.Println(err)
-			} else {
-				f.alonzoGenesis = file
-			}
-
-			time.Sleep(time.Hour * time.Duration(timeoutHours))
+		c := time.Tick(time.Duration(timeoutHours))
+		for _ = range c {
+			fDownload()
 		}
 	}()
 }

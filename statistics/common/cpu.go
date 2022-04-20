@@ -2,10 +2,8 @@ package common
 
 import (
 	pb "github.com/adarocket/proto/proto-gen/common"
-	"golang.org/x/sys/unix"
 	"log"
 	"runtime"
-	"unsafe"
 )
 
 // GetCPUState -
@@ -30,6 +28,7 @@ type avgStat struct {
 }
 
 func avgLoad() (avgStat, error) {
+	/*
 	type loadavg struct {
 		load  [3]uint32
 		scale int
@@ -48,6 +47,6 @@ func avgLoad() (avgStat, error) {
 		Load5:  float64(load.load[1]) / scale,
 		Load15: float64(load.load[2]) / scale,
 	}
-
+	*/
 	return ret, nil
 }

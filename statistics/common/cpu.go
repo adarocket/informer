@@ -1,9 +1,10 @@
 package common
 
 import (
-	pb "github.com/adarocket/proto/proto-gen/common"
 	"log"
 	"runtime"
+
+	pb "github.com/adarocket/proto/proto-gen/common"
 )
 
 // GetCPUState -
@@ -29,24 +30,25 @@ type avgStat struct {
 
 func avgLoad() (avgStat, error) {
 	/*
-	type loadavg struct {
-		load  [3]uint32
-		scale int
-	}
+		type loadavg struct {
+			load  [3]uint32
+			scale int
+		}
 
-	b, err := unix.SysctlRaw("vm.loadavg")
-	if err != nil {
-		log.Println(err)
-		return avgStat{}, err
-	}
+		b, err := unix.SysctlRaw("vm.loadavg")
+		if err != nil {
+			log.Println(err)
+			return avgStat{}, err
+		}
 
-	load := *(*loadavg)(unsafe.Pointer((&b[0])))
-	scale := float64(load.scale)
-	ret := avgStat{
-		Load1:  float64(load.load[0]) / scale,
-		Load5:  float64(load.load[1]) / scale,
-		Load15: float64(load.load[2]) / scale,
-	}
+		load := *(*loadavg)(unsafe.Pointer((&b[0])))
+		scale := float64(load.scale)
+		ret := avgStat{
+			Load1:  float64(load.load[0]) / scale,
+			Load5:  float64(load.load[1]) / scale,
+			Load15: float64(load.load[2]) / scale,
+		}
 	*/
+	var ret avgStat
 	return ret, nil
 }

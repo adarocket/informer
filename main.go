@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/adarocket/informer/config"
-	"github.com/adarocket/informer/statistics/cardano"
-	"github.com/adarocket/informer/statistics/chia"
 	"log"
 	"time"
 
+	"github.com/adarocket/informer/config"
+	"github.com/adarocket/informer/statistics/cardano"
+	"github.com/adarocket/informer/statistics/chia"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
 )

@@ -1,15 +1,19 @@
 package config
 
 import (
-	"github.com/bykovme/goconfig"
 	"log"
+
+	"github.com/bykovme/goconfig"
 )
 
 const cConfigPath = "/etc/ada-rocket/informer.conf"
 
 // Config - structure of config file
 type Config struct {
-	Ticker                  string `json:"ticker"`
+	Ticker string `json:"ticker"`
+	Type   string `json:"type"`
+	Name   string `json:"name"`
+
 	UUID                    string `json:"uuid"`
 	Location                string `json:"location"`
 	ControllerURL           string `json:"controller_url"`

@@ -99,6 +99,9 @@ func (cardano *Cardano) GetNodeStatistic(fullStatistics bool) (*pb.SaveStatistic
 	request.NodeAuthData.Ticker = cardano.loadedConfig.Ticker
 	request.NodeAuthData.Uuid = cardano.loadedConfig.UUID
 
+	request.NodeAuthData.Type = cardano.loadedConfig.Type
+	request.NodeAuthData.Name = cardano.loadedConfig.Name
+
 	request.Statistic = new(pb.Statistic)
 
 	if fullStatistics {

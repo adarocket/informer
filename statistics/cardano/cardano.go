@@ -101,6 +101,7 @@ func (cardano *Cardano) GetNodeStatistic(fullStatistics bool) (*pb.SaveStatistic
 
 	request.NodeAuthData.Type = cardano.loadedConfig.Type
 	request.NodeAuthData.Name = cardano.loadedConfig.Name
+	request.NodeAuthData.Blockchain = cardano.loadedConfig.Blockchain
 
 	request.Statistic = new(pb.Statistic)
 

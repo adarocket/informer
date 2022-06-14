@@ -13,7 +13,7 @@ func (commonStatistic *CommonStatistic) GetNodeBasicData() *pb.NodeBasicData {
 	var nodeBasicData pb.NodeBasicData
 
 	nodeBasicData.Ticker = commonStatistic.loadedConfig.Ticker
-	nodeBasicData.Type = "" // from node info
+	nodeBasicData.Type = commonStatistic.loadedConfig.Type // from node info
 	nodeBasicData.Location = commonStatistic.loadedConfig.Location
 	nodeBasicData.NodeVersion = getNodeVersion()
 

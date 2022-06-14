@@ -7,7 +7,6 @@ require (
 	github.com/bykovme/goconfig v0.0.0-20170717154220-caa70d3abfca
 	github.com/google/uuid v1.3.0
 	github.com/sergey-shpilevskiy/go-bytesize v1.0.0
-	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
 	github.com/tidwall/gjson v1.14.1
 	golang.org/x/net v0.0.0-20220531201128-c960675eff93 // indirect
 	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a

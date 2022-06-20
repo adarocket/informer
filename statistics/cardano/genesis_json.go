@@ -1,9 +1,10 @@
 package cardano
 
 import (
-	"github.com/adarocket/informer/helpers"
 	"log"
 	"time"
+
+	"github.com/adarocket/informer/helpers"
 )
 
 const (
@@ -47,8 +48,13 @@ func (f *genesisJsonFiles) startUpdateTimeoutCycle(timeoutHours int) {
 
 	fDownload()
 	go func() {
-		c := time.Tick(time.Duration(timeoutHours))
-		for _ = range c {
+		// c := time.Tick(time.Duration(timeoutHours))
+		// for range c {
+		// 	fDownload()
+		// }
+
+		for {
+			time.Sleep(time.Duration(timeoutHours) * time.Hour)
 			fDownload()
 		}
 	}()

@@ -144,6 +144,10 @@ func (cardano *Cardano) getSlotTipRef(jsonBody string) (slotTipRef int64, expira
 	shelleyGenesisJSON := string(shelleyGenesisData)
 
 	slotLength := gjson.Get(shelleyGenesisJSON, "slotLength").Int()
+	if slotLength == 0 {
+		log.Println("slot length is 0")
+		return
+	}
 
 	byronGenesisData := cardano.genesisJson.byronGenesis
 	byronGenesisJSON := string(byronGenesisData)
